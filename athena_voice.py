@@ -19,7 +19,7 @@ def speak(speech):
         "Content-Type": "application/json",
         "Authorization": "Basic cHViX21wbGprYnB5cmdudXZoaGJkeDpwa182ZWMyOTM3Mi1mMTBjLTQzZTItOGZhNi1lNDRjZmE4ZjZkNTg="
     }
-    snd_file = rf'C:\Users\caden\Documents\Project-Athena\sound_files\{speech}.wav'
+    snd_file = rf'C:\Users\caden\Documents\python_fun\Project-Athena\sound_files\{speech}.wav'
     with open("sound_list.json", "r") as f:
         data = json.load(f)
     voice_found = False
