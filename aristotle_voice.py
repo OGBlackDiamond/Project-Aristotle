@@ -11,7 +11,7 @@ def speak(speech):
         "pace": 1,
         "duration": [1],
         "pitch": [1],
-        "voicemodel_uuid": "d927745c-9cff-45e6-bd21-e605c3fa6f5a",
+        "voicemodel_uuid": "5a41dfbb-d46e-473c-a5ad-7aac89e10c76",
         "speech": speech
     }
     headers = {
@@ -19,7 +19,7 @@ def speak(speech):
         "Content-Type": "application/json",
         "Authorization": "Basic cHViX21wbGprYnB5cmdudXZoaGJkeDpwa182ZWMyOTM3Mi1mMTBjLTQzZTItOGZhNi1lNDRjZmE4ZjZkNTg="
     }
-    snd_file = rf'C:\Users\caden\Documents\python_fun\Project-Athena\sound_files\{speech}.wav'
+    snd_file = rf'C:\Users\caden\Documents\Project-Athena\sound_files\{speech}.wav'
     with open("sound_list.json", "r") as f:
         data = json.load(f)
     voice_found = False

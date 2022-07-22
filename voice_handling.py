@@ -1,5 +1,7 @@
-from athena_voice import *
+from aristotle_voice import *
 from voice_recognition import *
+from phrases import *
+import random
 with open("callsign.json", "r") as f:
         callsign = json.load(f)
 
@@ -9,20 +11,32 @@ with open("callsign.json", "r") as f:
 
         
 def command_center():
-    if listen() == callsign:
-        speak("hi_there")
-        speak("how_can_i_help")
-        command = listen()
-        if command == "repeat after me":
-            words = ""
-            while words != "stop":
-                speak(words)
-                words = listen()
-        elif command == "tell me a joke":
-            print()
-        elif command == "change callsign":
-            speak("sure")
-            speak("what would you like my new call sign to be")
-            with open("callsign.json", "w") as write_file:
-                json.dump(listen(), write_file)
+    command = listen()
+    if command == "repeat after me":
+        words = ""
+        while words != "stop":
+            speak(words)
+            words = listen()
+    elif command == "introduce yourself":
+        speak("hello")
+        speak(f"my_name_is_{callsign}")
+    elif command == "tell me a joke":
+        num = int(random.random()*10)
+        while num > 4:
+            num = int(random.random()*10)
+        speak(jokes(num))
+        speak(punchlines(num))
+    elif command == "change call sign":
+        speak(responses())
+        speak("what_would_you_like_my_new_call_sign_to_be")
+        with open("callsign.json", "w") as write_file:
+            json.dump(listen().lower(), write_file)
+    elif command == "bye":
+        return
+    else:
+        speak("sorry_i_dont_know_that_command")
 
+    command_center()
+
+speak(greetings())
+command_center()
