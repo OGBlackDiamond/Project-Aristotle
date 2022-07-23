@@ -31,7 +31,7 @@ def command_center():
         speak("what_would_you_like_my_new_call_sign_to_be")
         with open("callsign.json", "w") as write_file:
             json.dump(listen().lower(), write_file)
-    elif command == "bye":
+    elif command == "goodbye":
         return
     else:
         speak("sorry_i_dont_know_that_command")
