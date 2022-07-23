@@ -38,5 +38,6 @@ def command_center():
 
     command_center()
 
+listen() 
 speak(greetings())
 command_center()
