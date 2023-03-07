@@ -1,25 +1,24 @@
 import requests
 import json
 from playsound import playsound
-#Voice model by uberduck.ai
+#Voice model by Evenlabs
 def speak(speech):
-    url = "https://api.uberduck.ai/speak-synchronous"
+    url = "https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB"
 
 
     payload = {
-        "voice": "lj",
-        "pace": 1,
-        "duration": [1],
-        "pitch": [1],
-        "voicemodel_uuid": "5a41dfbb-d46e-473c-a5ad-7aac89e10c76",
-        "speech": speech
+        "text": speech,
+        "voice_settings": {
+            "stability": 0.75,
+            "similarity_boost": 0.5
+        }
     }
     headers = {
-        "Accept": "application/json",
+        "accept": "audio/mpeg",
+        "xi-api-key": "ecc818f995a03efb02c092423f2aff30",
         "Content-Type": "application/json",
-        "Authorization": "Basic cHViX21wbGprYnB5cmdudXZoaGJkeDpwa182ZWMyOTM3Mi1mMTBjLTQzZTItOGZhNi1lNDRjZmE4ZjZkNTg="
     }
-    snd_file = rf'C:\Users\caden\Documents\python_fun\Project-Athena\sound_files\{speech}.wav'
+    snd_file = rf'C:\Users\caden\Documents\Project-Aristotle\speech.mpeg'
     with open("sound_list.json", "r") as f:
         data = json.load(f)
     voice_found = False
@@ -39,3 +38,4 @@ def speak(speech):
     with open("sound_list.json", "w") as write_file:
         json.dump(data, write_file)
 
+speak("deez big nuts")
