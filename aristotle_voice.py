@@ -19,7 +19,7 @@ def speak(speech):
         "xi-api-key": "ecc818f995a03efb02c092423f2aff30",
         "Content-Type": "application/json",
     }
-    snd_file = 'speech.mpeg'
+    snd_file = os.path.dirname(__file__) + 'speech.mpeg'
     response = requests.post(url, json=payload, headers=headers)
     with open(snd_file, "wb") as f:
         f.write(response.content)

@@ -25,6 +25,7 @@ def command_center(input):
         return getChat(directive + command)
 
 
+
 while True:
     input = listen()
     if has_attention == False:
