@@ -1,9 +1,13 @@
 import requests
 import os
 from playsound import playsound
+
+snd_filename = "speech.mpeg"
+
 #Voice model by Evenlabs
 def speak(speech):
-    os.remove("speech.mpeg")
+    if os.path.exists("speech.mpeg"):
+        os.remove("speech.mpeg")
     url = "https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB"
 
 
@@ -19,7 +23,7 @@ def speak(speech):
         "xi-api-key": "ecc818f995a03efb02c092423f2aff30",
         "Content-Type": "application/json",
     }
-    snd_file = os.path.dirname(__file__) + 'speech.mpeg'
+    snd_file = os.path.join(os.path.dirname(__file__), snd_filename)
     response = requests.post(url, json=payload, headers=headers)
     with open(snd_file, "wb") as f:
         f.write(response.content)

@@ -5,24 +5,27 @@ from chat_responses import *
 import json
 import random
 with open("callsign.json", "r") as f:
-        callsign = json.load(f)
+    callsign = json.load(f)
+with open("directive.json", "r") as f:
+    directive = json.load(f)
 
 has_attention = False
 
-directive = f"You are a virtual assistant named {callsign}. Your creator and companion, Caden Feller is speaking, he tells you "
 
 def command_center(input):
     command = input
-    if command == "introduce yourself":
-        return f"Hello, my name is {callsign}"
-    elif command == "change call sign":
+    if command == "change call sign":
         with open("callsign.json", "w") as write_file:
             json.dump(listen()
                       , write_file)
         return responses()
+    elif command == "append to directive":
+        speak("Sure thing. What would you like to add to the directive?")
+        with open("directive.json", "w") as write_file:
+            json.dump(directive + listen()+ ". ", write_file)
     else:
         #chat gpt goes burrrr
-        return getChat(directive + command)
+        return getChat(f"{directive}Caden tells you {input}, what do you say?")
 
 
 
