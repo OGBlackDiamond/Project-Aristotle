@@ -3,6 +3,7 @@ import os
 from playsound import playsound
 #Voice model by Evenlabs
 def speak(speech):
+    os.remove("speech.mpeg")
     url = "https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB"
 
 

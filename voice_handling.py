@@ -1,12 +1,15 @@
-from aristotle_voice import speak
+from aristotle_voice import *
 from voice_recognition import *
 from phrases import *
+from chat_responses import *
 import json
 import random
 with open("callsign.json", "r") as f:
         callsign = json.load(f)
 
 has_attention = False
+
+directive = f"You are a virtual assistant named {callsign}. Your creator and companion, Caden Feller is speaking, he tells you "
 
 def command_center(input):
     command = input
@@ -19,7 +22,7 @@ def command_center(input):
         return responses()
     else:
         #chat gpt goes burrrr
-        return "sorry, i dont know that command"
+        return getChat(directive + command)
 
 
 while True:
