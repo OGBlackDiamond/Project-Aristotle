@@ -22,6 +22,7 @@ def command_center(input):
         return "sorry, i dont know that command"
 
 
+
 while True:
     input = listen()
     if has_attention == False:
