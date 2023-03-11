@@ -4,10 +4,11 @@ import random
 
 def greetings():
     lines = [
-        "hello_there",
-        "how_may_i_be_of_assistance",
+        "hello there",
+        "how may i be of assistance",
         "greetings",
-        "good_to_see_you"
+        "good to see you",
+        "Hello Caden. I'm here to help with whatever you need"
     ]
     return random.choice(lines)
 
@@ -15,10 +16,20 @@ def greetings():
 
 def responses():
     lines = [
-        "sure_thing",
+        "sure thing",
         "sure",
-        "right_away",
+        "right away",
         "processing",
-        "most_definitely"
+        "most definitely"
+    ]
+    return random.choice(lines)
+
+
+
+def goodbyes():
+    lines = [
+        "goodbye, Caden",
+        "see you next time",
+        "stay fresh!"
     ]
     return random.choice(lines)

@@ -1,45 +1,73 @@
-from aristotle_voice import *
-from voice_recognition import *
+from aristotle_voice import Response
+from voice_recognition import Voice
+from chat_responses import Chat
 from phrases import *
-from chat_responses import *
 import json
-import random
-with open("callsign.json", "r") as f:
-    callsign = json.load(f)
-with open("directive.json", "r") as f:
-    directive = json.load(f)
 
-has_attention = False
+class Aristotle:
+    def __init__(self):
+        with open("callsign.json", "r") as f:
+            self.callsign = json.load(f)
+        with open("directive.json", "r") as f:
+            self.directive = json.load(f)
 
+        self.has_attention = False
 
-def command_center(input):
-    command = input
-    if command == "change call sign":
-        with open("callsign.json", "w") as write_file:
-            json.dump(listen()
-                      , write_file)
-        return responses()
-    elif command == "append to directive":
-        speak("Sure thing. What would you like to add to the directive?")
-        with open("directive.json", "w") as write_file:
-            json.dump(directive + listen()+ ". ", write_file)
-    else:
-        #chat gpt goes burrrr
-        return getChat(f"{directive}Caden tells you {input}, what do you say?")
+        self.voice = Voice()
+        self.chat = Chat()
+        self.response = Response()
+
+        self.input = ""
+
+        self.ignore = 0
 
 
+    def main(self):
+        while True:
+            self.input = self.voice.get_audio()
+            if not self.entry_point(self.input) and self.has_attention == False:
+                pass
+                self.ignore += 1
+            else:
+                print("reached attention span")
+                if self.dismiss(self.input):
+                    break
+                if self.ignore <= 0:
+                    self.response.speak(self.command_center(self.input))
+                self.ignore -=1
 
-while True:
-    input = listen()
-    if has_attention == False:
-        if input == callsign:
-            has_attention = True
-            speak(greetings())
-        else: 
-            continue
-    else:
-        if input != 'goodbye':
-            speak(command_center(input))
+
+    def command_center(self, input):
+        command = input
+        print("reaching command center")
+        if command == "change call sign":
+            with open("callsign.json", "w") as write_file:
+                json.dump(self.voice.get_audio(), write_file)
+            return responses()
+        elif command == "append to directive":
+            self.response.speak("Sure thing. What would you like to add to the directive?")
+            with open("directive.json", "w") as write_file:
+                json.dump(self.directive + self.voice.get_audio()+ ". ", write_file)
+            return "Directive Updated!"
         else:
-            speak(input)
-            break
+            return self.chat.getChat(f"{self.directive}Caden tells you {input}, what do you say?")
+
+
+    def entry_point(self, input):
+        if input == self.callsign:
+            self.response.speak(greetings())
+            self.has_attention = True
+            return True
+        else:
+            return False
+                
+    def dismiss(self, input):
+        if input != 'goodbye':
+            pass
+        else:
+            self.response.speak(goodbyes())
+            self.has_attention = False
+            return True
+
+ari = Aristotle()
+ari.main()
