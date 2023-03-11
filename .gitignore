@@ -1,7 +1,7 @@
 #ignore compliled python files
 *.cpython
 *.pyc
-/._pycache_
+._pycache_/
 
 
 #ignore sound file
