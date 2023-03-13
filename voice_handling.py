@@ -22,6 +22,7 @@ class Aristotle:
         self.ignore = 0
 
 
+
     def main(self):
         while True:
             self.input = self.voice.get_audio()
@@ -31,8 +32,8 @@ class Aristotle:
             else:
                 print("reached attention span")
                 if self.dismiss(self.input):
-                    break
-                if self.ignore <= 0:
+                    self.has_attention = False
+                if self.ignore < 0:
                     self.response.speak(self.command_center(self.input))
                 self.ignore -=1
 
@@ -66,7 +67,6 @@ class Aristotle:
             pass
         else:
             self.response.speak(goodbyes())
-            self.has_attention = False
             return True
 
 ari = Aristotle()

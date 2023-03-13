@@ -2,7 +2,7 @@ import os
 import requests
 import openai
 
-openai.api_key = "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"
+openai.api_key = os.environ["OPENAI_API_KEY"]
 
 class Chat:
     def __init__(self):
