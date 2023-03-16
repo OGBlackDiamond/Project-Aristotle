@@ -38,6 +38,11 @@ class Aristotle:
                 #self.ignore -=1
 
 
+    def simulateSpeech(self, input):
+        self.response.speak(self.command_center(input)) 
+
+
+
     def command_center(self, input):
         command = input
         print("reaching command center")
