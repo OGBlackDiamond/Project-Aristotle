@@ -27,15 +27,15 @@ class Aristotle:
         while True:
             self.input = self.voice.get_audio()
             if not self.entry_point(self.input) and self.has_attention == False:
-                pass
-                self.ignore += 1
+                continue
+                #self.ignore += 1
             else:
                 print("reached attention span")
                 if self.dismiss(self.input):
                     self.has_attention = False
-                if self.ignore < 0:
-                    self.response.speak(self.command_center(self.input))
-                self.ignore -=1
+                #if self.ignore < 0:
+                self.response.speak(self.command_center(self.input))
+                #self.ignore -=1
 
 
     def command_center(self, input):
@@ -51,7 +51,7 @@ class Aristotle:
                 json.dump(self.directive + self.voice.get_audio()+ ". ", write_file)
             return "Directive Updated!"
         else:
-            return self.chat.getChat(f"{self.directive}Caden tells you {input}, what do you say?")
+            return self.chat.getChatTurbo(f"{self.directive}Caden tells you {input}, what do you say?")
 
 
     def entry_point(self, input):
@@ -61,13 +61,16 @@ class Aristotle:
             return True
         else:
             return False
-                
+
     def dismiss(self, input):
         if input != 'goodbye':
             pass
         else:
             self.response.speak(goodbyes())
             return True
+
+    def test(self, input):
+        self.response.speak(self.chat.getChatBabbage(f"{self.directive}Caden tells you {input}, what do you say?"))
 
 ari = Aristotle()
 ari.main()

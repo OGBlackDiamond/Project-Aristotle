@@ -12,7 +12,7 @@ class Response:
 
         self.api_keys = [self.apikey0, self.apikey1, self.apikey2, self.apikey3]
 
-        self.currentkey = 0
+        self.currentkey = 2
 
     #Voice model by Evenlabs
     def speak(self, speech):

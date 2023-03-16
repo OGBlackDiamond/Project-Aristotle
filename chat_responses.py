@@ -18,12 +18,12 @@ class Chat:
 
         return response.choices[0].text
 
-    def getChat(self, input) :
+    def getChatBabbage(self, input) :
         url = "https://api.openai.com/v1/completions"
 
 
         payload = {
-            "model": "text-davinci-003",
+            "model": "text-curie-001",
             "prompt": input,
             "max_tokens": 250,
             "temperature": 0.5
@@ -37,3 +37,22 @@ class Chat:
         response = requests.post(url, json=payload, headers=headers)
 
         return response.json()["choices"][0]["text"]
+    
+    def getChatTurbo(self, input):
+        url = "https://api.openai.com/v1/chat/completions"
+
+        payload = {
+            "model": "gpt-3.5-turbo",
+            "messages": [{"role": "user", "content": f"{input}"}],
+            "max_tokens": 250,
+            "temperature": 0.7
+        }
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {self.key}",
+
+        }
+
+        response = requests.post(url, json=payload, headers=headers)
+
+        return response.json()["choices"][0]["message"]["content"]
