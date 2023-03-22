@@ -6,10 +6,10 @@ import json
 
 class Aristotle:
     def __init__(self):
-        with open("callsign.json", "r") as f:
-            self.callsign = json.load(f)
-        with open("directive.json", "r") as f:
-            self.directive = json.load(f)
+        with open("config.json", "r") as f:
+            self.callsign = json.load(f)["callsign"]
+        with open("config.json", "r") as f:
+            self.directive = json.load(f)["directive"]
 
         self.has_attention = False
 
@@ -47,8 +47,8 @@ class Aristotle:
         command = input
         print("reaching command center")
         if command == "change call sign":
-            with open("callsign.json", "w") as write_file:
-                json.dump(self.voice.get_audio(), write_file)
+            with open("callsign.json", "r+") as write_file:
+                json.dumps(self.voice.get_audio(), write_file, indent=4)
             return responses()
         elif command == "append to directive":
             self.response.speak("Sure thing. What would you like to add to the directive?")
