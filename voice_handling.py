@@ -46,15 +46,13 @@ class Aristotle:
     def command_center(self, input):
         command = input
         print("reaching command center")
-        if command == "change call sign":
-            with open("callsign.json", "r+") as write_file:
-                json.dumps(self.voice.get_audio(), write_file, indent=4)
-            return responses()
-        elif command == "append to directive":
+        if command == "append to directive":
             self.response.speak("Sure thing. What would you like to add to the directive?")
-            with open("directive.json", "w") as write_file:
-                json.dump(self.directive + self.voice.get_audio()+ ". ", write_file)
+            self.appendToDirective(self.voice.get_audio())
             return "Directive Updated!"
+        elif command == "change gender" or "change personality":
+            self.switchGender()
+            return "Good to be back!"
         else:
             return self.chat.getChatTurbo(f"{self.directive}Caden tells you {input}, what do you say?")
 
@@ -73,6 +71,30 @@ class Aristotle:
         else:
             self.response.speak(goodbyes())
             return True
+        
+
+    def switchGender(self):
+        file = {}
+        with open("config.json", "r") as f:
+            file = json.load(f)
+
+        with open("config.json", "w") as f:
+            if file["callsign"] == "Aristotle":
+                file["callsign"] = "Athena"
+                file["gender"] = "female"
+            elif file["callsign"] == "Athena":
+                file["callsign"] == "Aristotle"
+                file["gender"] = "male"
+            json.dump(file, f, indent=4)
+
+    def appendToDirective(self, input):
+        file = {}
+        with open("config.json", "r") as f:
+            file = json.load(f)
+
+        with open("config.json", "w") as f:
+            file["directive"] += f"{input}. "
+
 
     def test(self, input):
         self.response.speak(self.chat.getChatBabbage(f"{self.directive}Caden tells you {input}, what do you say?"))
