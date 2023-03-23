@@ -1,8 +1,13 @@
 import requests
 import os
 from playsound import playsound
-class Response:
 
+"""
+This class will allow me to get audio responses to input
+This will be used to simulate ChatGPT talking back to you
+"""
+class Response:
+    # initialize the list of API keys to cylce through
     def __init__(self):
         self.snd_filename = "speech.mpeg"
         self.apikey0 = "ecc818f995a03efb02c092423f2aff30"
@@ -24,6 +29,7 @@ class Response:
         #switches API keys if needed to make sure we have sufficent words
         self.switch_keys()
 
+        # makes the API request
         url = "https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB"
 
 
@@ -42,10 +48,10 @@ class Response:
 
         # defines the file path for the soundfile to go
         snd_file = os.path.join(os.path.dirname(__file__), self.snd_filename)
-        
+
         # gets the response from the API
         response = requests.post(url, json=payload, headers=headers)
-        
+
         #writes the data from the file
         with open(snd_file, "wb") as f:
             f.write(response.content)

@@ -2,6 +2,11 @@
 import random
 
 
+"""
+This file defines a bunch of pre-programmed responses for 
+the bot to say when needed or requested
+"""
+
 def greetings():
     lines = [
         "hello there",

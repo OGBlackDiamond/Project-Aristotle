@@ -1,4 +1,9 @@
 import json
+
+"""
+file to test stuff with
+"""
+
 file = {}
 with open("config.json", "r") as f:
     file = json.load(f)

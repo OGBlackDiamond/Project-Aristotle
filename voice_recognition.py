@@ -1,11 +1,15 @@
 import speech_recognition as sr
 from aristotle_voice import *
 
+"""
+This class will get the user's voice
+This will be used as input
+"""
 class Voice:
     def __init__(self):
         self.r = sr.Recognizer()
 
-
+    # listen to the user
     def listen(self):
         # obtain audio from the microphone
         with sr.Microphone() as source:
@@ -14,7 +18,7 @@ class Voice:
 
         return audio
 
-
+    # find speech in the audio
     def recogize_audio(self, audio):
         # recognize speech using Google Speech Recognition
         try:
@@ -26,6 +30,6 @@ class Voice:
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
-
+    # retun the test from the speech
     def get_audio(self):
         return self.recogize_audio(self.listen())

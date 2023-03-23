@@ -4,10 +4,18 @@ import openai
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
+"""
+This class will allow us to get sentences from ChatGPT
+This allows us to simulate a personality when used with
+the directive
+"""
 class Chat:
+    # pass in the API key
     def __init__(self):
         self.key = openai.api_key
         pass
+
+    # old code to get responses
     def getChatOld(self, input) :
         response = openai.Completion.create(
             model="text-davinci-003", 
@@ -18,6 +26,7 @@ class Chat:
 
         return response.choices[0].text
 
+    # get a response from the babbage voice model
     def getChatBabbage(self, input) :
         url = "https://api.openai.com/v1/completions"
 
@@ -37,7 +46,8 @@ class Chat:
         response = requests.post(url, json=payload, headers=headers)
 
         return response.json()["choices"][0]["text"]
-    
+
+    # get a response from the turbo voice model
     def getChatTurbo(self, input):
         url = "https://api.openai.com/v1/chat/completions"
 
