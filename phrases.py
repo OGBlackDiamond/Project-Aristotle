@@ -1,6 +1,5 @@
-#List of phases Athena can use
+#List of phases Aristotle can use
 import random
-
 
 """
 This file defines a bunch of pre-programmed responses for 
@@ -18,7 +17,6 @@ def greetings():
     return random.choice(lines)
 
 
-
 def responses():
     lines = [
         "sure thing",
@@ -28,7 +26,6 @@ def responses():
         "most definitely"
     ]
     return random.choice(lines)
-
 
 
 def goodbyes():
