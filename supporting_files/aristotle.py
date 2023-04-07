@@ -1,7 +1,7 @@
-from speech import Speech
-from voice import Voice
+from supporting_files.speech import Speech
+from supporting_files.voice import Voice
 from chat import Chat
-from phrases import *
+from supporting_files.set_responses.phrases import *
 import json
 
 """

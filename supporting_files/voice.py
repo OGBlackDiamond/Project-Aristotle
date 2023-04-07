@@ -1,5 +1,5 @@
 import speech_recognition as sr
-from speech import *
+from supporting_files.speech import *
 
 """
 This class will get the user's voice
