@@ -1,7 +1,7 @@
 # Project Aristotle 
 
 ## About Aristotle
-Aristotle is an artificial inteligence used as a personal assistant to myself (Caden Feller).
+Aristotle is an artificial inteligence used as a personal assistant.
 He has a unique personality that can be edited at will by the user.
 He is a friend and a companion, but will also be harsh with the voice of reason.
 Enjoy!

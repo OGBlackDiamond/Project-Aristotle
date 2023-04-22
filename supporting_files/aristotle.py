@@ -32,7 +32,7 @@ class Aristotle:
         self.directive = self.directive.replace('<callsign>', self.callsign)
         self.directive = self.directive.replace('<gender>', self.gender)
         # variable to determine the interaction mode
-        self.mode = config_data["interaction mode"]
+        self.mode = config_data["interaction_mode"]
         # dictionary containing all of the API keys
         self.keys = config_data["data"]["keys"]
         # dictionary containing all of the request URLs
@@ -159,7 +159,7 @@ class Aristotle:
         else:
             self.mode = "speech"
 
-        file["interaction mode"] = self.mode
+        file["interaction_mode"] = self.mode
 
         # write the new data back to the config file so it can be saved in the event of a reboot
         with open("config.json", "w") as f:
@@ -177,6 +177,7 @@ class Aristotle:
 
         with open("config.json", "w") as f:
             file["directive"] += f"{input}. "
+            json.dump(file, f, indent=4)
 
 
 

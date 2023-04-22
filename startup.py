@@ -1,4 +1,5 @@
 import os
+import json
 # this class will assist the user in creating their virtual assistant
 class Startup:
     def __init__(self):
@@ -37,8 +38,6 @@ class Startup:
             elif self.input == "n":
                 print("\nOkay! Your current assistant will stay.")
                 print("If you are trying to run the assistant, I would reccomend the main.py file!")
-                quit()
-
 
     def set_name(self):
         self.callsign = input("What would you like to call your assistant?\n")
@@ -65,6 +64,30 @@ class Startup:
         print(f"\nYour default interaction mode is - {self.interaction_mode}")
         print(f"\nAnd last but not least, your assistant's purpose is - {self.directive}")
 
+    # TODO:make default config file
+    def write_to_file(self):
+        self.config = {
+            "callsign": self.callsign,
+            "directive": self.directive,
+            "gender": self.gender,
+            "interaction mode": self.interaction_mode,
+            "data": {
+                "keys": {
+                    "elevenlabs_keys": {}
+                },
+                "request_urls": {
+                    "aristotle_url": "https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB",
+                    "athena_url": "https://api.elevenlabs.io/v1/text-to-speech/EXAVITQu4vr4xnSDxMaL",
+                    "subscription_url": "https://api.elevenlabs.io/v1/user/subscription",
+                    "chat_completions_url": "https://api.openai.com/v1/chat/completions",
+                    "completions_url": "https://api.openai.com/v1/completions"
+                }
+            }
+            }
+
+        with open("config.json", "w") as f:
+            json.dump(self.config, f, indent=4)
+
     def check_if_correct(self):
         self.list_attributes()
         self.input = input("\nDoes this look correct? (y/n)\n")
@@ -72,7 +95,9 @@ class Startup:
             self.input = input("Response not applicable, 'y' or 'n' expected\n")
         if self.input == "y":
             print("\nOkay! Lets get this party started!")
-            return False
+            self.write_to_file()
+            print("Please add your API keys to the file, as per the instructions in the README file.")
+            return True
         elif self.input == "n":
             print("\nbruh moment")
             self.input = input("\nWhat do you want changed? (name/gender/interaction mode/directive)\n")
@@ -86,7 +111,8 @@ class Startup:
                 self.set_interaction_mode()
             elif self.input == "directive":
                 self.set_directive()
-            return True
+            return False
+
 
 
 

@@ -1,5 +1,8 @@
 ### Python ###
 
+# ignore the vscode settings directory
+.vscode/
+
 # ignore the sound file
 *.mpeg
 
