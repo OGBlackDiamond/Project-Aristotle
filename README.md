@@ -12,12 +12,19 @@ On startup, Aristotle will attempt to read a file called config.json in order to
 You have to input your API keys manually. Your openAI API key will be gotten from the OS variable, if you don't know how to do this, I reccomend looking at a guide. Your elevenlabs key(s) should go into the config file like this:
 ...
 "keys" : {
+
     "elevenlabs_keys": {
+
         "apikey0": "{key here}",
+
         "apikey1": "{key here}",
+
         "apikey2": "{key here}",
+
         "apikey3": "{key here}"
+
     }
+    
 },
 ...
 more or less keys can be added as needed, but they must be formatted such that, the names go up in increments of 1, starting at 0, as shown.
