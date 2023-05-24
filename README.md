@@ -10,25 +10,18 @@ Enjoy!
 On startup, Aristotle will attempt to read a file called config.json in order to gather information about itself for optimal use. This file can be automatically generated using the built in config generator. Simply run the 'startup.py' file and follow the instructions, most everything else will be done for you. 
 ##### Note:
 You have to input your API keys manually. Your openAI API key will be gotten from the OS variable, if you don't know how to do this, I reccomend looking at a guide. Your elevenlabs key(s) should go into the config file like this:
-
+```
 ...
 "keys" : {
-
     "elevenlabs_keys": {
-
         "apikey0": "{key here}",
-
         "apikey1": "{key here}",
-
         "apikey2": "{key here}",
-
         "apikey3": "{key here}"
-
     }
-
 },
 ...
-
+```
 more or less keys can be added as needed, but they must be formatted such that, the names go up in increments of 1, starting at 0, as shown.
 
 ## Use
