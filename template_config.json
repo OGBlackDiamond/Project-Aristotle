@@ -1,0 +1,16 @@
+{
+    "callsign": "<callsign>",
+    "directive": "<directive>",
+    "gender": "<gender>",
+    "interaction_mode": "<interaction_mode>",
+    "data": {
+        "keys" : {},
+        "request_urls": {
+            "aristotle_url": "https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB",
+            "athena_url": "https://api.elevenlabs.io/v1/text-to-speech/EXAVITQu4vr4xnSDxMaL",
+            "subscription_url": "https://api.elevenlabs.io/v1/user/subscription",
+            "chat_completions_url": "https://api.openai.com/v1/chat/completions",
+            "completions_url": "https://api.openai.com/v1/completions"
+        }
+    }
+}
