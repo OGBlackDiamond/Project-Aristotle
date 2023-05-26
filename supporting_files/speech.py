@@ -19,8 +19,10 @@ class Speech:
         # initializes the list for the keys to be placed into
         self.api_keys = []
 
+        print(len(self.keys))
+
         # checks that the user has at least one API key to utilize
-        if len(self.keys) <= 0:
+        if len(self.keys) >= 0:
             # adds all the API keys from the dictionary to a list to be used in the program
             for i in range(len(self.keys)):
                 self.api_keys.append(self.keys[f"apikey{i}"])
@@ -34,7 +36,7 @@ class Speech:
         self.urls = urls
 
         # variable to control what key is currently being used
-        self.currentkey = 1
+        self.currentkey = 0
 
         # defines the urls needed for each voice model
         self.aristotle_url = self.urls["aristotle_url"]

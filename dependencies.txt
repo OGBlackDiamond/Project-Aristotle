@@ -1,0 +1,4 @@
+playsound
+openai
+SpeechRecognition
+requests
