@@ -31,6 +31,6 @@ class Voice:
         except sr.RequestError as e:
             print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
-    # retun the test from the speech
+    # return the test from the speech
     def get_audio(self):
         return self.recogize_audio(self.listen())
