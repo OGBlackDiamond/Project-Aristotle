@@ -2,7 +2,7 @@ import os
 import json
 # this class will assist the user in creating their virtual assistant
 class Startup:
-    # initalizes variables that will go into the configuration file
+    # initializes variables that will go into the configuration file
     def __init__(self):
         self.config = {}
         self.input = ""
@@ -41,10 +41,10 @@ class Startup:
                 print("Okay! Starting from scratch. Goodbye!\n\n")
             elif self.input == "n":
                 print("\nOkay! Your current assistant will stay.")
-                print("If you are trying to run the assistant, I would reccomend the main.py file!")
+                print("If you are trying to run the assistant, I would recommend the main.py file!")
                 quit()
 
-    # checks if the user wants to use the defualt presets or not
+    # checks if the user wants to use the default presets or not
     def check_default_presets(self):
         self.input = input("\nWould you like to use the default presets (y), or configure your own assistant? (n)\n")
         while self.input != "y" and self.input != "n":
@@ -77,14 +77,14 @@ class Startup:
         self.interaction_mode = input("(text / speech) text is interaction via typing, speech is interaction via your voice\n")
         while self.interaction_mode != "text" and self.interaction_mode != "speech":
             self.interaction_mode = input("\nResponse not applicable, 'text' or 'speech' expected\n")
-        print(f"\nGreat! Your defualt interaction mode is {self.interaction_mode}")
+        print(f"\nGreat! Your default interaction mode is {self.interaction_mode}")
 
     # directive
     def set_directive(self):
         print("\nYou must describe the assistant's purpose. I recommend looking at the README file on github before proceeding any further.")
-        self.directive = input("So, what will it's purpose be?\n")
+        self.directive = input("So, what will its purpose be?\n")
 
-    # lists the current atributes for the user
+    # lists the current attributes for the user
     def list_attributes(self):
         print(f"\nYour assistant's name is - {self.callsign}")
         print(f"\nYour assistant identifies as - {self.gender}")
