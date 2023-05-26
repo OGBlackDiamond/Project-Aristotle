@@ -5,6 +5,7 @@ class Startup:
     # initalizes variables that will go into the configuration file
     def __init__(self):
         self.config = {}
+        self.user_name = ""
         self.input = ""
         self.callsign = ""
         self.gender = ""
@@ -16,6 +17,7 @@ class Startup:
         self.check_config_exists()
         print("Welcome! You almost have your personalized assistant ready to go!")
         print("First, we need to configure a couple things before you get started.")
+        self.get_username()
         if self.check_default_presets():
             self.write_to_file()
         else:
@@ -61,6 +63,10 @@ class Startup:
 
     # this chunk of methods sets all of the attributes of the assistant
 
+    def get_username(self):
+        self.user_name = input("What is your name?\n")
+        print(f"Got it, you are {self.user_name}")
+
     # name
     def set_name(self):
         self.callsign = input("What would you like to call your assistant?\n")
@@ -89,7 +95,8 @@ class Startup:
         print(f"\nYour assistant's name is - {self.callsign}")
         print(f"\nYour assistant identifies as - {self.gender}")
         print(f"\nYour default interaction mode is - {self.interaction_mode}")
-        print(f"\nAnd last but not least, your assistant's purpose is - {self.directive}")
+        print(f"\nYour assistant's purpose is - {self.directive}")
+        print(f"\nYour name is - {self.user_name}")
 
     # once the user has confirmed that everything is correct, it will write all of the data to a file
     def write_to_file(self):
@@ -98,6 +105,7 @@ class Startup:
             self.config = json.load(f)
             f.close()
 
+        self.config["user_name"] = self.config["user_name"].replace("<user_name>", self.user_name)
         self.config["callsign"] = self.config["callsign"].replace('<callsign>', self.callsign)
         self.config["gender"] = self.config["gender"].replace('<gender>', self.gender)
         self.config["directive"] = self.config["directive"].replace('<directive>', self.directive)
@@ -119,9 +127,9 @@ class Startup:
             return False
         elif self.input == "n":
             print("\nbruh moment")
-            self.input = input("\nWhat do you want changed? (name/gender/interaction mode/directive)\n")
-            while self.input != "name" and self.input != "gender" and self.input != "interaction mode" and self.input != "directive":
-                self.input = input("Response not applicable, 'name', 'gender', 'interaction mode', or 'directive' expected\n")
+            self.input = input("\nWhat do you want changed? (name/gender/interaction mode/directive/user name)\n")
+            while self.input != "name" and self.input != "gender" and self.input != "interaction mode" and self.input != "directive" and self.input != "user name":
+                self.input = input("Response not applicable, 'name', 'gender', 'interaction mode', 'directive', or 'user name' expected\n")
             if self.input == "name":
                 self.set_name()
             elif self.input == "gender":
@@ -130,7 +138,6 @@ class Startup:
                 self.set_interaction_mode()
             elif self.input == "directive":
                 self.set_directive()
+            elif self.input == "user name":
+                self.get_username()
             return True
-
-hi = Startup()
-hi.startup_assist()

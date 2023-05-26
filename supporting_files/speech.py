@@ -19,8 +19,6 @@ class Speech:
         # initializes the list for the keys to be placed into
         self.api_keys = []
 
-        print(len(self.keys))
-
         # checks that the user has at least one API key to utilize
         if len(self.keys) >= 0:
             # adds all the API keys from the dictionary to a list to be used in the program
@@ -42,12 +40,15 @@ class Speech:
         self.aristotle_url = self.urls["aristotle_url"]
         self.athena_url = self.urls["athena_url"]
 
+        # defines the file path for the soundfile to go
+        self.snd_file = os.path.join(os.path.dirname(__file__), self.snd_filename)
+
     #Voice model by Elevenlabs
     def speak(self, speech, gender):
 
         # quick fix to make playsound work
-        if os.path.exists(self.snd_filename):
-            os.remove(self.snd_filename)
+        if os.path.exists(self.snd_file):
+            os.remove(self.snd_file)
 
         #switches API keys if needed to make sure we have sufficent words
         self.switch_keys()
@@ -74,18 +75,15 @@ class Speech:
             "Content-Type": "application/json",
         }
 
-        # defines the file path for the soundfile to go
-        snd_file = os.path.join(os.path.dirname(__file__), self.snd_filename)
-
         # gets the response from the API
         response = requests.post(url, json=payload, headers=headers)
 
         #writes the data from the file
-        with open(snd_file, "wb") as f:
+        with open(self.snd_file, "wb") as f:
             f.write(response.content)
 
         #finally, plays the sound
-        playsound(snd_file)
+        playsound(self.snd_file)
 
 
     # this function will check to see how many characters are left in the current API key

@@ -23,12 +23,15 @@ class Aristotle:
         # uses the configuration data passed in by main.py
         # to assign all of the nessecary variables for use and distribution
 
+        #variable to determine the user's name
+        self.user_name = config_data["user_name"]
         # variable to deterine the name
         self.callsign = config_data["callsign"]
         # variable to determine the gender
         self.gender = config_data["gender"]
         # variable to aknowledge the directive
         self.directive = config_data["directive"]
+        self.directive = self.directive.replace('<user_name', self.user_name)
         self.directive = self.directive.replace('<callsign>', self.callsign)
         self.directive = self.directive.replace('<gender>', self.gender)
         # variable to determine the interaction mode
@@ -104,7 +107,7 @@ class Aristotle:
             self.switch_interaction_mode()
         # if no command is present, it will run through ChatGPT with the directive as input
         else:
-            return self.chat.get_chat_turbo(f"{self.directive}Caden tells you {input}, what do you say?")
+            return self.chat.get_chat_turbo(f"{self.directive}{self.user_name} tells you {input}, what do you say?")
 
     # the 'entry point', this method checks if the bot's attention is needed
     def entry_point(self, input):
@@ -118,10 +121,10 @@ class Aristotle:
     # the 'exit point', checks if the bot's attention is no longer needed
     def dismiss(self, input):
         if input != 'goodbye':
-            pass
+            return True
         else:
             self.speech.speak(goodbyes(), self.gender)
-            return True
+            return False
 
 
     # switches the gender from male to female, or vice versa (trans robot rights!)
@@ -183,4 +186,4 @@ class Aristotle:
 
     # test method, nothing special goes here
     def test(self, input):
-        self.speech.speak(self.chat.get_chat_curie(f'{self.directive}Caden tells you "{input}", what do you say?', self.gender))
+        self.speech.speak(self.chat.get_chat_curie(f'{self.directive}{self.user_name} tells you "{input}", what do you say?', self.gender))
