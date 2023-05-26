@@ -47,7 +47,7 @@ class Speech:
         if os.path.exists(self.snd_filename):
             os.remove(self.snd_filename)
 
-        #switches API keys if needed to make sure we have sufficent words
+        #switches API keys if needed to make sure we have sufficient words
         self.switch_keys()
 
         # chooses the voice depending of the variable passed in
@@ -98,10 +98,10 @@ class Speech:
         response = requests.get(url, headers=headers)
         # gets how many characters are left on the current key
         remaining_characters = response.json()["character_count"]
-        # gets the maximum ammount of characters left in the current API key
+        # gets the maximum amount of characters left in the current API key
         total_characters = response.json()["character_limit"]
 
-        # returns the ammount of characters left
+        # returns the amount of characters left
         return total_characters - remaining_characters
 
 
