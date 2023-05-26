@@ -5,7 +5,9 @@
     "gender": "<gender>",
     "interaction_mode": "<interaction_mode>",
     "data": {
-        "keys" : {},
+        "keys" : {
+            "elevenlabs_keys": {}
+        },
         "request_urls": {
             "aristotle_url": "https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB",
             "athena_url": "https://api.elevenlabs.io/v1/text-to-speech/EXAVITQu4vr4xnSDxMaL",

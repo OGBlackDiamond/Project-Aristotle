@@ -1,4 +1,3 @@
-from supporting_files.aristotle import Aristotle
 from startup import Startup
 import json
 import argparse
@@ -34,5 +33,6 @@ with open("config.json", "r") as f:
 # instantiate and run the bot!
 # this instance uses the configuration file data
 # this data is then distributed to all the other classes in this instances
+from supporting_files.aristotle import Aristotle
 ari = Aristotle(config_file)
 ari.main()

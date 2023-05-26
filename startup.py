@@ -31,6 +31,7 @@ class Startup:
                 pass
         print("Please add your API keys to the file, as per the instructions in the README file.")
         print("run the 'main.py' file to start your assistant after you have added your api keys.")
+        quit()
 
     # checks if a configuration file already exists, and asks the user what action they would like to take
     def check_config_exists(self):

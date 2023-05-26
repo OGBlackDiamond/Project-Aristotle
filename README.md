@@ -8,9 +8,9 @@ Enjoy!
 
 ## Startup
 To install all dependencies needed for Aristotle to run, open your command line in the aristotle directory, and run the following command:
-```python main.py -d install```. If you run into issues, you can open the dependencies.txt file, and manually install each package.
+```python3 main.py -d install```. If you run into issues, you can open the dependencies.txt file, and manually install each package.
 
-On startup, Aristotle will attempt to read a file called config.json in order to gather information about itself for optimal use. This file can be automatically generated using the built in config generator. Simply run the following command: ```python main.py -g config```, and follow the instructions, most everything else will be done for you.
+On startup, Aristotle will attempt to read a file called config.json in order to gather information about itself for optimal use. This file can be automatically generated using the built in config generator. Simply run the following command: ```python3 main.py -g config```, and follow the instructions, most everything else will be done for you.
 
 ##### Note:
 You have to input your API keys manually. Your openAI API key will be gotten from the OS variable, if you don't know how to do this, I reccomend looking at a guide. Your elevenlabs key(s) should go into the config file like this:
