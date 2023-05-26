@@ -1,4 +1,4 @@
-from aristotle import Aristotle
+from supporting_files.aristotle import Aristotle
 import json
 
 
