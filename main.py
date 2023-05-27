@@ -1,3 +1,4 @@
+#! python3
 from startup import Startup
 import json
 import argparse
