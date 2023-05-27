@@ -21,15 +21,15 @@ class Aristotle:
     def __init__(self, config_data):
 
         # uses the configuration data passed in by main.py
-        # to assign all of the nessecary variables for use and distribution
+        # to assign all of the necessary variables for use and distribution
 
         #variable to determine the user's name
         self.user_name = config_data["user_name"]
-        # variable to deterine the name
+        # variable to determine the name
         self.callsign = config_data["callsign"]
         # variable to determine the gender
         self.gender = config_data["gender"]
-        # variable to aknowledge the directive
+        # variable to acknowledge the directive
         self.directive = config_data["directive"]
         self.directive = self.directive.replace('<user_name', self.user_name)
         self.directive = self.directive.replace('<callsign>', self.callsign)
@@ -42,7 +42,7 @@ class Aristotle:
         self.urls = config_data["data"]["request_urls"]
 
 
-        # instantiate classes with the nessecary data from the configuration file
+        # instantiate classes with the necessary data from the configuration file
         self.speech = Speech(self.keys, self.urls)
         self.chat = Chat(self.urls)
         self.voice = Voice()
@@ -149,7 +149,7 @@ class Aristotle:
             json.dump(file, f, indent=4)
 
 
-    # swithces the interaction mode between speech (talking) and text (typing)
+    # switches the interaction mode between speech (talking) and text (typing)
     def switch_interaction_mode(self):
         file = {}
         with open("config.json", "r") as f:

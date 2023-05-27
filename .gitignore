@@ -12,6 +12,6 @@ __pycache__/
 # ignore the config file because it contains API keys
 config.json
 
-# ingore all test resources
+# ignore all test resources
 test.py
 test.json

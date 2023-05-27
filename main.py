@@ -12,8 +12,8 @@ parser.add_argument("-d", "--Dependencies", help="Installs all nessecary depende
 args = parser.parse_args()
 
 if args.Generate == "config":
-    hi = Startup()
-    hi.startup_assist()
+    startup = Startup()
+    startup.startup_assist()
 
 if args.Dependencies == "install":
     try:
