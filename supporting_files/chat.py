@@ -57,6 +57,9 @@ class Chat:
 
     def get_request(self, chat_model, input):
 
+        self.messages.append(input)
+
+
         loop_control = 0
 
         payload_message =[
@@ -110,3 +113,6 @@ class Chat:
     # clears the current message thread
     def clear_messages(self):
         self.messages = []
+
+    def summarize_conversation(self):
+        print(self.get_chat_turbo("summarize the conversation we just had"))

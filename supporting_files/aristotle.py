@@ -107,7 +107,7 @@ class Aristotle:
             self.switch_interaction_mode()
         # if no command is present, it will run through ChatGPT with the directive as input
         else:
-            return self.chat.get_chat_turbo(f"{self.user_name} tells you {input}, what do you say?")
+            return self.chat.get_chat_turbo(f"{self.user_name} tells you {input}.")
 
     # the 'entry point', this method checks if the bot's attention is needed
     def entry_point(self, input):
