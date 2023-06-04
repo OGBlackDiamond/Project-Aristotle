@@ -73,6 +73,7 @@ class Chat:
 
         payload_message.append({"role": "user", "content": f"{input}"})
 
+
         text_response = ""
 
         if chat_model == "gpt-3.5-turbo":

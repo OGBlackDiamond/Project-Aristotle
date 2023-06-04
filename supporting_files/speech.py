@@ -84,6 +84,7 @@ class Speech:
 
         #finally, plays the sound
         playsound(self.snd_file)
+        print("balls")
 
 
     # this function will check to see how many characters are left in the current API key

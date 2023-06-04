@@ -120,11 +120,11 @@ class Aristotle:
 
     # the 'exit point', checks if the bot's attention is no longer needed
     def dismiss(self, input):
-        if input != 'goodbye':
-            self.chat.clearMessages()
+        if input == 'goodbye':
+            self.chat.clear_messages()
+            self.speech.speak(goodbyes(), self.gender)
             return True
         else:
-            self.speech.speak(goodbyes(), self.gender)
             return False
 
 
