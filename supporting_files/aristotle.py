@@ -44,7 +44,7 @@ class Aristotle:
 
         # instantiate classes with the necessary data from the configuration file
         self.speech = Speech(self.keys, self.urls)
-        self.chat = Chat(self.urls)
+        self.chat = Chat(self.urls, self.directive)
         self.voice = Voice()
 
         # the variable that will control whether Aristotle will respond to input
@@ -107,7 +107,7 @@ class Aristotle:
             self.switch_interaction_mode()
         # if no command is present, it will run through ChatGPT with the directive as input
         else:
-            return self.chat.get_chat_turbo(f"{self.directive}{self.user_name} tells you {input}, what do you say?")
+            return self.chat.get_chat_turbo(f"{self.user_name} tells you {input}, what do you say?")
 
     # the 'entry point', this method checks if the bot's attention is needed
     def entry_point(self, input):
@@ -121,6 +121,7 @@ class Aristotle:
     # the 'exit point', checks if the bot's attention is no longer needed
     def dismiss(self, input):
         if input != 'goodbye':
+            self.chat.clearMessages()
             return True
         else:
             self.speech.speak(goodbyes(), self.gender)
