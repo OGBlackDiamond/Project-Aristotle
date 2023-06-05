@@ -78,12 +78,12 @@ class Aristotle:
                 break
 
             #checks if the bot is at attention
-            if not self.entry_point(self.input) and self.has_attention == False:
-                continue
+            if self.has_attention == False:
+                self.entry_point(self.input)
             else:
                 # if the bot does have attention, run it through the command center
                 if self.dismiss(self.input):
-                    self.has_attention = False
+                    continue
                 self.speech.speak(self.command_center(self.input), self.gender)
 
 
@@ -123,6 +123,7 @@ class Aristotle:
         if input == 'goodbye':
             self.chat.clear_messages()
             self.speech.speak(goodbyes(), self.gender)
+            self.has_attention = False
             return True
         else:
             return False
