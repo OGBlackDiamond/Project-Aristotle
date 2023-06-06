@@ -115,4 +115,4 @@ class Chat:
         self.messages = []
 
     def summarize_conversation(self):
-        print(self.get_chat_turbo("summarize the conversation we just had"))
+        return self.get_chat_turbo("summarize the conversation we just had")

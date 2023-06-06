@@ -121,6 +121,7 @@ class Aristotle:
     # the 'exit point', checks if the bot's attention is no longer needed
     def dismiss(self, input):
         if input == 'goodbye':
+            self.chat.summarize_conversation()
             self.chat.clear_messages()
             self.speech.speak(goodbyes(), self.gender)
             return True
@@ -182,7 +183,6 @@ class Aristotle:
         with open("config.json", "w") as f:
             file["directive"] += f"{input}. "
             json.dump(file, f, indent=4)
-
 
 
     # test method, nothing special goes here
