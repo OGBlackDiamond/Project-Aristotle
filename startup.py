@@ -11,6 +11,8 @@ class Startup:
         self.gender = ""
         self.directive = ""
         self.interaction_mode = ""
+        self.elevenlab_keys = {}
+        self.openai_key = ""
 
     # assists the user in starting their assistant
     def startup_assist(self):
@@ -21,15 +23,16 @@ class Startup:
         if self.check_default_presets():
             self.write_to_file()
         else:
-            self.set_name()
             self.set_gender()
             self.set_interaction_mode()
             print("Now comes the hard part.")
             self.set_directive()
+            print("great. got keys?")
+            self.set_api_keys()
             print("Amazing! Let me make sure I got this all correct.")
             while self.check_if_correct():
                 pass
-        print("Please add your API keys to the file, as per the instructions in the README file.")
+        print("Please ensure all the API key information is correct, and add any missing ones.")
         print("run the 'main.py' file to start your assistant after you have added your api keys.")
         quit()
 
@@ -68,15 +71,17 @@ class Startup:
         self.user_name = input("What is your name?\n")
         print(f"Got it, you are {self.user_name}")
 
-    # name
-    def set_name(self):
-        self.callsign = input("What would you like to call your assistant?\n")
-        print(f"\nOkay! Your assistant's name will be {self.callsign}!")
-
     # gender
     def set_gender(self):
-        self.gender = input("How does your assistant identify? (male, female, non-binary, etc)\n")
+        self.gender = input("How does your assistant identify by default? (male, female)\n")
+        while self.gender != "male" and self.gender!= "female":
+            self.gender = input("\nNonbinary genders not applicable, 'male' or 'female' expected\n")
         print(f"\nSounds good! Your assistant identifies as {self.gender}")
+        # sets the name of the assistant based on gender
+        if self.gender == "male":
+            self.callsign == "Aristotle"
+        else:
+            self.callsign == "Athena"
 
     # default interaction mode
     def set_interaction_mode(self):
@@ -90,6 +95,37 @@ class Startup:
     def set_directive(self):
         print("\nYou must describe the assistant's purpose. I recommend looking at the README file on github before proceeding any further.")
         self.directive = input("So, what will its purpose be?\n")
+
+    # api keys
+    def set_api_keys(self):
+        self.input = input("would you like to add your api keys now? (y / n)\n")
+        if self.input == "y":
+            print("lets start with elevenlabs keys!\n")
+            self.get_elevenlabs_keys()
+            print("great! lets move on to your openai API key")
+            self.get_openai_key()
+        else:
+            print("No worries! Just make sure you add your keys manually to the config file later.")
+
+    # handles getting the elevenlabs keys
+    def get_elevenlabs_keys(self):
+        # keeps track of the key count
+        key_count = 0
+
+        self.input = input("Enter your first elevenlabs API key (press ENTER if you don't have one):\n")
+        self.elevenlab_keys[f"key{key_count}"] = self.input
+        while True:
+            key_count += 1
+            self.input = input("Do you have any more elevenlabs keys you would like to add? (y / n)\n")
+            if self.input == "y":
+                self.elevenlab_keys[f"key{key_count}"] = input("input your next key\n")
+            else:
+                break
+
+    def get_openai_key(self):
+        self.input = input("Input your openai API key (press ENTER if you don't have one):\n")
+        self.openai_key = self.input
+
 
     # lists the current attributes for the user
     def list_attributes(self):
@@ -106,11 +142,13 @@ class Startup:
             self.config = json.load(f)
             f.close()
 
-        self.config["user_name"] = self.config["user_name"].replace("<user_name>", self.user_name)
-        self.config["callsign"] = self.config["callsign"].replace('<callsign>', self.callsign)
-        self.config["gender"] = self.config["gender"].replace('<gender>', self.gender)
-        self.config["directive"] = self.config["directive"].replace('<directive>', self.directive)
-        self.config["interaction_mode"] = self.config["interaction_mode"].replace('<interaction_mode>', self.interaction_mode)
+        self.config["user_name"] = self.user_name
+        self.config["callsign"] = self.callsign
+        self.config["gender"] = self.gender
+        self.config["directive"] = self.directive
+        self.config["interaction_mode"] = self.interaction_mode
+        self.config["data"]["keys"]["elevenlabs_keys"] = self.elevenlab_keys
+        self.config["data"]["keys"]["openai_key"] = self.openai_key
 
         with open("config.json", "w") as f:
             json.dump(self.config, f, indent=4)

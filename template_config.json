@@ -6,7 +6,8 @@
     "interaction_mode": "<interaction_mode>",
     "data": {
         "keys" : {
-            "elevenlabs_keys": {}
+            "elevenlabs_keys": {"key0": ""},
+            "openai_key": ""
         },
         "request_urls": {
             "aristotle_url": "https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB",
