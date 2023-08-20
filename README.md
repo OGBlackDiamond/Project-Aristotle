@@ -1,11 +1,9 @@
 # Project Aristotle 
 
 ## About Aristotle
-Aristotle is an artificial intelligence used as a personal assistant.
-He has a unique personality that can be edited at will by the user.
-He is a friend and a companion, but will also be harsh with the voice of reason.
-Enjoy!
-
+Aristotle is an artificial intelligence used as a personal assistant. His objective is to make other assistants from massive companies look bad. While Aristotle can't interact with your OS (yet), he can interact with you on a more emotional level. He is designed to be a friend over a tool, meaning that he can't edit files for you, but he can still provide useful information upon request, and give you advice, interact with you like a person would, etc. 
+<br /><br />
+A major point that will set Aristotle apart from other personal assistants, is his memory, the hard part of this project. (When development finishes) Aristotle can remember conversations hes had in the past, and use them to provide better user experiences in the future.
 ## Startup
 To install all dependencies needed for Aristotle to run, open your command line in the aristotle directory, and run the following command:
 ```python3 main.py -d install```. If you run into issues, you can open the dependencies.txt file, and manually install each package.
@@ -13,20 +11,21 @@ To install all dependencies needed for Aristotle to run, open your command line 
 On startup, Aristotle will attempt to read a file called config.json in order to gather information about itself for optimal use. This file can be automatically generated using the built in config generator. Simply run the following command: ```python3 main.py -g config```, and follow the instructions, most everything else will be done for you.
 
 ##### Note:
-You have to input your API keys manually. Your openAI API key will be gotten from the OS variable, if you don't know how to do this, I recommend looking at a guide. Your elevenlabs key(s) should go into the config file like this:
+The configuration utility should allow you to input your API keys, in the event you don't want to use the utility, you will have to enter your keys manually. Your openAI API can be accessed from either the OS variable (if you don't know how to do this, I recommend looking at a guide) OR a value in the configuration file. Your elevenlabs key(s) should go into the config file like this:
 ```
 ...
 "keys" : {
     "elevenlabs_keys": {
-        "apikey0": "{key here}",
-        "apikey1": "{key here}",
-        "apikey2": "{key here}",
-        "apikey3": "{key here}"
-    }
+        "key0": "{key here}",
+        "key1": "{key here}",
+        "key2": "{key here}",
+        "key3": "{key here}"
+    },
+    "openai_key": "key optionally here"
 },
 ...
 ```
-more or less keys can be added as needed, but they must be formatted such that the names go up in increments of 1, starting at 0, as shown.
+more or less elevenlabs keys can be added as needed, but they must be formatted such that the names go up in increments of 1, starting at 0, as shown.
 
 ## Use
 Entry point (the file to run) is main.py

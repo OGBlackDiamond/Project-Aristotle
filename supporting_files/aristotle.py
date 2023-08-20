@@ -44,7 +44,7 @@ class Aristotle:
 
         # instantiate classes with the necessary data from the configuration file
         self.speech = Speech(self.keys, self.urls)
-        self.chat = Chat(self.urls, self.directive)
+        self.chat = Chat(self.urls, self.keys, self.directive)
         self.voice = Voice()
 
         # the variable that will control whether Aristotle will respond to input
