@@ -12,7 +12,7 @@ class Chat:
     def __init__(self, urls, keys, directive):
 
         # checks if a key is present in the config file
-        if keys["openai_key"] != "":
+        if keys["openai_key"] == "":
             # attempt to get the OpenAI API key from the system variable
             try:
                 self.key = os.environ["OPENAI_API_KEY"]
