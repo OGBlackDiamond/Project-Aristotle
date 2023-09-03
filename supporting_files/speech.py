@@ -20,7 +20,7 @@ class Speech:
         self.api_keys = []
 
         # checks that the user has at least one API key to utilize
-        if len(self.keys) >= 0:
+        if len(self.keys) > 0:
             # adds all the API keys from the dictionary to a list to be used in the program
             for i in range(len(self.keys)):
                 self.api_keys.append(self.keys[f"apikey{i}"])

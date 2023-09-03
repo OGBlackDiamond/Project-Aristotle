@@ -6,7 +6,7 @@ import json
 
 """
 The main class that handles all the logic to make the 
-bot itself. 
+bot itself.
 
 This class takes in the configuration data
 and distributes it to the rest of the classes
@@ -31,7 +31,7 @@ class Aristotle:
         self.gender = config_data["gender"]
         # variable to acknowledge the directive
         self.directive = config_data["directive"]
-        self.directive = self.directive.replace('<user_name', self.user_name)
+        self.directive = self.directive.replace('<user_name>', self.user_name)
         self.directive = self.directive.replace('<callsign>', self.callsign)
         self.directive = self.directive.replace('<gender>', self.gender)
         # variable to determine the interaction mode
@@ -121,7 +121,7 @@ class Aristotle:
     # the 'exit point', checks if the bot's attention is no longer needed
     def dismiss(self, input):
         if input == 'goodbye':
-            self.chat.summarize_conversation()
+            #self.chat.summarize_conversation()
             self.chat.clear_messages()
             self.speech.speak(goodbyes(), self.gender)
             self.has_attention = False
