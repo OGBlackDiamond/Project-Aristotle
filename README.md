@@ -6,9 +6,9 @@ Aristotle is an artificial intelligence used as a personal assistant. His object
 A major point that will set Aristotle apart from other personal assistants, is his memory, the hard part of this project. (When development finishes) Aristotle can remember conversations he's had in the past, and use them to provide better user experiences in the future.
 ## Startup
 To install all dependencies needed for Aristotle to run, open your command line in the aristotle directory, and run the following command:
-```python3 main.py -d install```. If you run into issues, you can open the `requirements.txt` file, and manually install each package.
+```python3 main.py --install-dependencies```. If you run into issues, you can open the `requirements.txt` file, and manually install each package.
 
-On startup, Aristotle will attempt to read a file called `config.json` in order to gather information about itself for optimal use. This file can be automatically generated using the built in configuration utility. Simply run the following command: ```python3 main.py -g config```, and follow the instructions, most everything else will be done for you.
+On startup, Aristotle will attempt to read a file called `config.json` in order to gather information about itself for optimal use. This file can be automatically generated using the built in configuration utility. Simply run the following command: ```python3 main.py --generate-config```, and follow the instructions, most everything else will be done for you.
 
 ##### Note:
 The configuration utility should allow you to input your API keys, in the event you don't want to use the utility, you will have to enter your keys manually. Your OpenAI API can be accessed from either the OS variable (if you don't know how to do this, I recommend looking at a guide) OR a value in the configuration file. Your key(s) should go into the config file like this:

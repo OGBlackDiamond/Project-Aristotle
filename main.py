@@ -17,7 +17,8 @@ if args.generate_config:
 
 if args.install_dependencies:
     try:
-        os.system("pip install -r \"requirements.txt\"")
+        if os.system("pip install -r \"requirements.txt\"") != 0:
+            raise Exception('Package installation failed! Please install them manually.')
         print("\n\nSuccessfully installed all packages!")
     except:
         print("Packages could not be installed! Please install them manually.")
