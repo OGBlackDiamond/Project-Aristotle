@@ -6,16 +6,16 @@ import os
 
 parser = argparse.ArgumentParser(description='An AI personal assistant that is specific to you.')
 
-parser.add_argument("-g", "--Generate", help="A tool to generate a file based on the parameter given. OPTIONS: config - generates the configuration file.")
-parser.add_argument("-d", "--Dependencies", help="Installs all necessary dependencies to run the program. OPTIONS: install - installs all the pip packages.")
+parser.add_argument("--generate_config",action="store_true", help="Generates the configuration file.")
+parser.add_argument("--install_dependencies", action="store_true", help="Installs all the pip packages that this program depends on.")
 
 args = parser.parse_args()
 
-if args.Generate == "config":
+if args.generate_config:
     startup = Startup()
     startup.startup_assist()
 
-if args.Dependencies == "install":
+if args.install_dependencies:
     try:
         os.system("pip install -r \"requirements.txt\"")
         print("\n\nSuccessfully installed all packages!")
