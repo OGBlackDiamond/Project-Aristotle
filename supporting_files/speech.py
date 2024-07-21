@@ -1,7 +1,7 @@
 import requests
 import os
-import json
-from playsound import playsound
+
+from audioplayer import AudioPlayer
 
 """
 This class will be used to get audio responses as input
@@ -11,7 +11,7 @@ class Speech:
 
     def __init__(self, keys, urls):
         # defines the file where the sound will be temporarily stored
-        self.snd_filename = "speech.mpeg"
+        self.snd_filename = "speech.mp3"
 
         # defines the dict of keys that will be used
         self.keys = keys["elevenlabs_keys"]
@@ -43,6 +43,7 @@ class Speech:
         # defines the file path for the soundfile to go
         self.snd_file = os.path.join(os.path.dirname(__file__), self.snd_filename)
 
+
     #Voice model by Elevenlabs
     def speak(self, speech, gender):
 
@@ -65,7 +66,7 @@ class Speech:
         payload = {
             "text": speech,
             "voice_settings": {
-                "stability": 0.75,
+                "stability": 0.5,
                 "similarity_boost": 0.5
             }
         }
@@ -83,9 +84,7 @@ class Speech:
             f.write(response.content)
 
         #finally, plays the sound
-        playsound(self.snd_file)
-        print("balls")
-
+        AudioPlayer(self.snd_file).play(block=True)
 
     # this function will check to see how many characters are left in the current API key
     def get_remaining_characters(self):

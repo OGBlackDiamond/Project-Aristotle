@@ -1,5 +1,5 @@
-playsound
 openai
 SpeechRecognition
 requests
 argparse
+audioplayer
