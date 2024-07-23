@@ -1,5 +1,4 @@
 import speech_recognition as sr
-from supporting_files.speech import *
 
 """
 This class will get the user's voice
@@ -34,3 +33,4 @@ class Voice:
     # return the test from the speech
     def get_audio(self):
         return self.recogize_audio(self.listen())
+

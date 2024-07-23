@@ -3,3 +3,4 @@ SpeechRecognition
 requests
 argparse
 audioplayer
+PyAudio
